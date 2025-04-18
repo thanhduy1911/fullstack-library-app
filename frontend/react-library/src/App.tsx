@@ -7,6 +7,7 @@ import { Heros } from './layouts/HomePage/components/Heros';
 import { LibraryServices } from './layouts/HomePage/components/LibraryServices';
 import { Footer } from './layouts/NavbarAndFooter/Footer';
 import { HomePage } from './layouts/HomePage/HomePage';
+import { SearchBooksPage } from './layouts/SearchBooksPage/SearchBooksPage';
 
 export const App = () => {
   return (
@@ -15,8 +16,9 @@ export const App = () => {
       <Navbar />
 
       {/* HomePage */}
-      <HomePage />
-
+      {/* <HomePage /> */}
+      {/* Search Books */}
+      <SearchBooksPage />
       {/* Footer */}
       <Footer />
     </div>
