@@ -66,34 +66,65 @@ public class BookService {
     }
 
     public List<ShelfCurrentLoansResponse> currentLoans(String userEmail) throws Exception {
-
         List<ShelfCurrentLoansResponse> shelfCurrentLoansResponses = new ArrayList<>();
+
         List<Checkout> checkoutList = checkoutRepository.findBooksByUserEmail(userEmail);
         List<Long> bookIdList = new ArrayList<>();
 
         for (Checkout checkout : checkoutList) {
-            bookIdList.add(checkout.getId());
+            bookIdList.add(checkout.getBookId());
         }
 
-        List<Book> books = bookRepository.findBooksByBooksIds(bookIdList);
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        List<Book> books = bookRepository.findBooksByBookIds(bookIdList);
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date currentDate = sdf.parse(LocalDate.now().toString());
+        TimeUnit time = TimeUnit.DAYS;
         for (Book book : books) {
-            Optional<Checkout> checkout = checkoutList.stream()
-                    .filter(checkout1 -> Objects.equals(checkout1.getBookId(), book.getId())).findFirst();
 
+            Optional<Checkout> checkout = checkoutList.stream().filter(x -> x.getBookId() == book.getId()).findFirst();
             if (checkout.isPresent()) {
-                Date d1 = formatter.parse(checkout.get().getReturnDate());
-                Date d2 = formatter.parse(LocalDate.now().toString());
 
-                TimeUnit time = TimeUnit.DAYS;
+                // Checkout should always be present
+                Date returnDate = sdf.parse(checkout.get().getReturnDate());
+                long differenceInTime = time.convert(returnDate.getTime() - currentDate.getTime(), TimeUnit.MILLISECONDS);
 
-                long diffInTime = time.convert(d1.getTime() - d2.getTime(),
-                        TimeUnit.MILLISECONDS);
-
-                shelfCurrentLoansResponses.add(new ShelfCurrentLoansResponse(book, (int) diffInTime));
+                ShelfCurrentLoansResponse loanResponse = new ShelfCurrentLoansResponse(book, (int) differenceInTime);
+                shelfCurrentLoansResponses.add(loanResponse);
             }
         }
+
         return shelfCurrentLoansResponses;
+    }
+
+    public void returnBook(String userEmail, Long bookId) throws Exception {
+
+        Optional<Book> book = bookRepository.findById(bookId);
+        Checkout validateCheckout = checkoutRepository.findByUserEmailAndBookId(userEmail, bookId);
+        if (validateCheckout == null || book.isEmpty()) {
+            throw new Exception("Book not found or not checkout by this user");
+        }
+
+        book.get().setCopiesAvailable(book.get().getCopiesAvailable() + 1);
+
+        bookRepository.save(book.get());
+        checkoutRepository.deleteById(validateCheckout.getId());
+    }
+
+    public void renewLoan(String userEmail, Long bookId) throws Exception {
+
+        Checkout validateCheckout = checkoutRepository.findByUserEmailAndBookId(userEmail, bookId);
+        if (validateCheckout == null) {
+            throw new Exception("Book not found or not checkout by this user");
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date returnDate = sdf.parse(validateCheckout.getReturnDate());
+        Date currentDate = sdf.parse(LocalDate.now().toString());
+
+        if (returnDate.compareTo(currentDate) >= 0) { // return date is greater than today date
+            validateCheckout.setReturnDate(LocalDate.now().plusDays(7).toString());
+            checkoutRepository.save(validateCheckout);
+        }
     }
 }
