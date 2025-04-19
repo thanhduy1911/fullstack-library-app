@@ -1,9 +1,13 @@
 package com.duyhvt.spring_boot_library.controller;
 
 import com.duyhvt.spring_boot_library.entity.Book;
+import com.duyhvt.spring_boot_library.response_models.ShelfCurrentLoansResponse;
 import com.duyhvt.spring_boot_library.service.BookService;
 import com.duyhvt.spring_boot_library.utils.ExtractJWT;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin("http://localhost:3000")
 @RestController
@@ -11,8 +15,16 @@ import org.springframework.web.bind.annotation.*;
 public class BookController {
     private final BookService bookService;
 
+    @Autowired
     public BookController(BookService bookService) {
         this.bookService = bookService;
+    }
+
+    @GetMapping("/secure/currentloans")
+    public List<ShelfCurrentLoansResponse> currentLoans(@RequestHeader(value = "Authorization") String token)
+            throws Exception {
+        String userEmail = ExtractJWT.payloadJWTExtraction(token, "sub");
+        return bookService.currentLoans(userEmail);
     }
 
     @GetMapping("/secure/currentloans/count")
