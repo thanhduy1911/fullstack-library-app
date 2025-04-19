@@ -15,14 +15,14 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/secure/current-loans/count")
+    @GetMapping("/secure/currentloans/count")
     public int currentLoansCount(@RequestHeader(value = "Authorization") String token) {
         String userEmail = ExtractJWT.payloadJWTExtraction(token, "sub");
         return bookService.currentLoansCount(userEmail);
     }
 
     @GetMapping("/secure/ischeckedout/byuser")
-    public Boolean isCheckedOutByUser(@RequestHeader(value = "Authorization") String token,
+    public Boolean checkoutBookByUser(@RequestHeader(value = "Authorization") String token,
                                       @RequestParam Long bookId) {
         String userEmail = ExtractJWT.payloadJWTExtraction(token, "sub");
         return bookService.checkoutBookByUser(userEmail, bookId);
