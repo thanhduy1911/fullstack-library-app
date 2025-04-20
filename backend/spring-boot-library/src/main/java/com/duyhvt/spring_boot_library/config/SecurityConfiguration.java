@@ -26,7 +26,8 @@ public class SecurityConfiguration {
                         // enable auth for mentioned routes matching with following pattern
                         "api/books/secure/**",
                                 "/api/reviews/secure/**",
-                                "/api/messages/secure/**")
+                                "/api/messages/secure/**",
+                                "/api/admin/secure/**")
                         .authenticated()
                         // allow for rest of the routes without auth
                         .anyRequest().permitAll())
