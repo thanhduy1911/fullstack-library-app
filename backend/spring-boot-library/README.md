@@ -9,7 +9,6 @@ A simple library management backend built using **Spring Boot 3.3.10**, migrated
 - **Spring Data REST**
 - **MySQL**
 - **Lombok**
-- **JUnit 5 + Spring Boot Test**
 - **Spring Boot DevTools**
 
 ## 📦 Features
@@ -18,6 +17,7 @@ A simple library management backend built using **Spring Boot 3.3.10**, migrated
 - **🔄 Book checkout & return tracking**
 - **📈 RESTFul API with Spring Data REST**
 - **🔐 Secure REST endpoints using Spring Security and Okta (OAuth 2.0 / OIDC)**
+- **⌛ History tracking by user email**
 - **✅ Unit & Integration testing**
 - **🌱 Future deployment**
 
@@ -48,10 +48,6 @@ A simple library management backend built using **Spring Boot 3.3.10**, migrated
 Access REST endpoints at:
 http://localhost:8080
 
-## 📌 Migration Notes (from Spring Boot 2.7 → 3.3.10)
-- **Updated dependencies to be compatible with Jakarta EE 9+ namespaces.**
-- **Ensured usage of jakarta.persistence. and jakarta.servlet.* packages.**
-- **Checked compatibility of plugins and removed deprecated configurations.**
-
 ## 🔧 To Do (Next Steps)
 - **Add Swagger for documentation**
+- **Add Services to submit questions from user to admin**
