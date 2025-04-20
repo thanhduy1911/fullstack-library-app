@@ -1,6 +1,7 @@
 package com.duyhvt.spring_boot_library.config;
 
 import com.duyhvt.spring_boot_library.entity.Book;
+import com.duyhvt.spring_boot_library.entity.Message;
 import com.duyhvt.spring_boot_library.entity.Review;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -23,9 +24,11 @@ public class DataRestConfig implements RepositoryRestConfigurer {
 
         config.exposeIdsFor(Book.class);
         config.exposeIdsFor(Review.class);
+        config.exposeIdsFor(Message.class);
         
         disableHttpMethods(Book.class, config, unSupportedActions);
         disableHttpMethods(Review.class, config, unSupportedActions);
+        disableHttpMethods(Message.class, config, unSupportedActions);
 
         // Configure CORS Mapping
         cors.addMapping(config.getBasePath() + "/**")
