@@ -1,12 +1,11 @@
 package com.duyhvt.spring_boot_library.controller;
 
-import com.duyhvt.spring_boot_library.entity.Review;
 import com.duyhvt.spring_boot_library.request_models.ReviewRequest;
 import com.duyhvt.spring_boot_library.service.ReviewService;
 import com.duyhvt.spring_boot_library.utils.ExtractJWT;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("https://localhost:3000")
 @RestController
 @RequestMapping("/api/reviews")
 public class ReviewController {

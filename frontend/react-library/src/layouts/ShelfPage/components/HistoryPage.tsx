@@ -28,7 +28,7 @@ export const HistoryPage = () => {
         const userEmail = authState.accessToken?.claims.sub;
         const pageParam = currentPage - 1;
         const sizeParam = 5;
-        const url = `http://localhost:8080/api/histories/search/findBooksByUserEmail?userEmail=${userEmail}&page=${pageParam}&size=${sizeParam}`;
+        const url = `${process.env.REACT_APP_BASE_URL}/histories/search/findBooksByUserEmail?userEmail=${userEmail}&page=${pageParam}&size=${sizeParam}`;
         const requestOptions = {
           method: "GET",
           headers: {

@@ -21,7 +21,9 @@ export const Messages = () => {
     const fetchUserMessages = async () => {
       if (authState && authState.isAuthenticated) {
         const userEmail = authState?.accessToken?.claims.sub;
-        const url = `http://localhost:8080/api/messages/search/findByUserEmail?userEmail=${userEmail}&page=${
+        const url = `${
+          process.env.REACT_APP_BASE_URL
+        }/messages/search/findByUserEmail?userEmail=${userEmail}&page=${
           currentPage - 1
         }&size=${messagesPerPage}`;
         const token = authState.accessToken?.accessToken;
