@@ -1,4 +1,4 @@
-# fullstack-library-app
+# Fullstack Library Application
 Full Stack Application: Library Application Using React and Spring Boot with MySQL database.
 Using Okta to use OAuth 2 For Security
 
