@@ -1,0 +1,4 @@
+node_modules
+backend/spring-boot-library/.env
+frontend/react-library/ssl-localhost/localhost-pc.crt
+frontend/react-library/ssl-localhost/localhost-pc.key

@@ -1,7 +1,7 @@
 package com.duyhvt.spring_boot_library.entity;
 
-import lombok.*;
-import javax.persistence.*;
+import lombok.Data;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "book")
