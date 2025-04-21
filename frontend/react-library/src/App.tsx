@@ -13,6 +13,7 @@ import { ReviewListPage } from "./layouts/BookCheckoutPage/ReviewListPage/Review
 import { ShelfPage } from "./layouts/ShelfPage/ShelfPage";
 import { MessagesPage } from "./layouts/MessagesPage/MessagesPage";
 import { ManageLibraryPage } from "./layouts/ManageLibraryPage/ManageLibraryPage";
+import { PaymentPage } from "./layouts/PaymentPage/PaymentPage";
 
 export const App = () => {
   const history = useHistory();
@@ -64,6 +65,9 @@ export const App = () => {
             </SecureRoute>
             <SecureRoute path="/admin">
               <ManageLibraryPage />
+            </SecureRoute>
+            <SecureRoute path="/fees">
+              <PaymentPage />
             </SecureRoute>
           </Switch>
         </div>

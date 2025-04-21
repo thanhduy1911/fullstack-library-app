@@ -12,14 +12,14 @@ A simple library management backend built using **Spring Boot 3.3.10**, migrated
 - **Spring Boot DevTools**
 
 ## 📦 Features
-- **📘 Book CRUD API**
-- **👤 Author & Borrower management**
-- **🔄 Book checkout & return tracking**
-- **📈 RESTFul API with Spring Data REST**
-- **🔐 Secure REST endpoints using Spring Security and Okta (OAuth 2.0 / OIDC)**
-- **⌛ History tracking by user email**
-- **✅ Unit & Integration testing**
-- **🌱 Future deployment**
+- **Book CRUD API**
+- **Author & Borrower management**
+- **Book checkout & return tracking**
+- **Payment Method With Stripe**
+- **RESTFul API with Spring Data REST**
+- **Secure REST endpoints using Spring Security and Okta (OAuth 2.0 / OIDC)**
+- **History tracking by user email**
+- **SSL Certificated (OpenSSL)**
 
 ## ⚙️ Getting Started
 ### Prerequisites
@@ -49,5 +49,4 @@ Access REST endpoints at:
 http://localhost:8080
 
 ## 🔧 To Do (Next Steps)
-- **Add Swagger for documentation**
-- **Add Services to submit questions from user to admin**
+- **Deployment in future**
