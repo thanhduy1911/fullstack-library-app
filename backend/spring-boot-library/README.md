@@ -1,6 +1,6 @@
 # 📚 Library App - Backend
 
-A simple library management backend built using **Spring Boot 3.3.10**, migrated from version 2.7. Designed to support typical library features such as managing books, authors, borrowers, and lending records.
+A simple library management backend built using **Spring Boot 3.3.10**, migrated from version 2.7. Designed to support typical library features such as managing books, authors, borrowers, and paying fees with payment method.
 
 ## 🚀 Tech Stack
 
